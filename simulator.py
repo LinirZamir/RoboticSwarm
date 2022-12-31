@@ -1,5 +1,5 @@
 import pygame
-
+from main import MAX_HEIGHT, MAX_WIDTH
 local_bots = []
 
 class Robot:
@@ -13,7 +13,7 @@ class Robot:
     def draw(self, screen):
         # Use Pygame's draw.circle function to draw a circle on the screen
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.size)
-
+ 
 
 def simulator(robot_list):
 
@@ -36,7 +36,7 @@ def simulator(robot_list):
     # Initialize Pygame
     pygame.init()
     # Set the window size
-    window_size = (640, 480)
+    window_size = (MAX_WIDTH, MAX_HEIGHT)
 
     # Create the window
     screen = pygame.display.set_mode(window_size)
@@ -45,8 +45,8 @@ def simulator(robot_list):
     pygame.display.set_caption('Robotic Swarm')
 
     # Define the center of the screen
-    normalize_x = window_size[0] / 2
-    normalize_y = window_size[1] / 2
+    normalize_x = 0 # window_size[0] / 2
+    normalize_y = 0 # window_size[1] / 2
 
     # Run the game loop
     running = True
@@ -60,8 +60,8 @@ def simulator(robot_list):
         screen.fill((255, 255, 255))
 
         # Draw the objects in the environment
-        pygame.draw.circle(screen, (0, 255, 0), (100, 100), 50)
-        pygame.draw.circle(screen, (255, 0, 0), (500, 400), 50)
+        pygame.draw.circle(screen, (0, 255, 0), (150, 150), 50) #Green
+        pygame.draw.circle(screen, (255, 0, 0), (500, 400), 50) #Red
 
         # Draw the robots
         draw_robots(screen,normalize_x,normalize_y)
