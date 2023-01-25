@@ -27,7 +27,7 @@ def main():
     import qlearning
     global global_simulator_thread
 
-    for n in range(1,500):
+    for n in range(1,10):
         robot_list.append(Robot(n,0,"camera","yolo",DIMENSION,[MAX_WIDTH/2-100,MAX_HEIGHT/2+100]))
 
     print("connecting")
@@ -45,14 +45,13 @@ def main():
             bot.reset_pos()
         start_time = time.time()
         while time.time() - start_time < 60:
-            for bot in robot_list:
-                qlearning.Qlearning(bot)
-                #sol = CLPSO(robot_list,DIMENSION,10e-3)
+            qlearning.Qlearning(robot_list)
+                # sol = CLPSO(robot_list,DIMENSION,10e-3)
                 #counter=counter+1
                 #if(sol != -1):
                 #    print(f"Reached Maxima Minima! {robot_list[sol].position}; Total iterations: {counter}")
                 #    found = 1
-                #time.sleep(0.000004)
+            #time.sleep(0.004)
 
 def handler(signum, frame):
     global global_simulator_thread
