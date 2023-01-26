@@ -30,9 +30,17 @@ def general_problem(inputs):
     z = f1**2+f2**2
     return z
 
+point_B = (5,5)
+
+def best_route(inputs):
+    x, y = inputs
+    target_x, target_y = point_B
+    distance = math.sqrt((x - target_x) ** 2 + (y - target_y) ** 2)
+    return distance
+
 
 def fitness_function(inputs):
-    return general_problem(inputs)
+    return best_route(inputs)
 
 
 # def fitness_function(position, point_B):

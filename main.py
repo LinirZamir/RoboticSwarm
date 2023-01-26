@@ -4,7 +4,7 @@ from robot_sim import Robot
 import time 
 import signal
 import simulator
-from pso import update, CLPSO
+from pso import CLPSO
 
 
 global_simulator_thread = None
