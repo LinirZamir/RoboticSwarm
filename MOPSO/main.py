@@ -4,17 +4,12 @@ from robot_sim import Robot
 import time 
 import signal
 import simulator
-from pso import update, CLPSO
+from pso import update
 
 
 global_simulator_thread = None
 
 DIMENSION = 2
-global_keypress = 0
-
-MAX_WIDTH = 640
-MAX_HEIGHT = 640
-
 
 robot_list = []
 stop_flag = threading.Event()
@@ -23,7 +18,7 @@ def main():
     global global_simulator_thread
 
     for n in range(1,100):
-        robot_list.append(Robot(n,0,DIMENSION,[MAX_WIDTH/2-100,MAX_HEIGHT/2+100]))
+        robot_list.append(Robot(n,0,"camera","yolo",DIMENSION,[-100,100]))
 
     print("connecting")
     global_simulator_thread = threading.Thread(target=simulator.simulator,args=(robot_list,))
@@ -32,7 +27,7 @@ def main():
     counter = 0
     while True:
         time.sleep(0.01)
-        sol = CLPSO(robot_list,DIMENSION,10e-3)
+        sol = update(robot_list,DIMENSION,10e-4)
         counter=counter+1
         if(sol != -1):
             print(f"Reached Maxima Minima! {robot_list[sol].position}; Total iterations: {counter}")
